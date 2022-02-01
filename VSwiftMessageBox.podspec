@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VSwiftMessageBox'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'A in-app notification/toast in swift mac application.'
 
   s.description      = 'A Message Box for MacOS application. Use it as in-app notification or toast.'
