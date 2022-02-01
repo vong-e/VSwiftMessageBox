@@ -1,0 +1,6 @@
+framework module VSwiftMessageBox {
+  umbrella header "VSwiftMessageBox-umbrella.h"
+
+  export *
+  module * { export * }
+}

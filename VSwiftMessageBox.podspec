@@ -8,18 +8,10 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VSwiftMessageBox'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of VSwiftMessageBox.'
+  s.version          = '0.0.1'
+  s.summary          = 'A in-app notification/toast in swift mac application.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'A Message Box for MacOS application. Use it as in-app notification or toast.'
 
   s.homepage         = 'https://github.com/vong-e/VSwiftMessageBox'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
