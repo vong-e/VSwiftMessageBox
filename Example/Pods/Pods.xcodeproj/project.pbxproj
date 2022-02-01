@@ -153,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				E32A719527A93C3A00D9E3FE /* Sources */,
-				E37F937027A91CA7004454B7 /* MessageBox.swift */,
 				CB56A0F710B4745ECD74D751F04623BF /* Pod */,
 				46A2CF856B78D225680588934657DEF6 /* Support Files */,
 			);
@@ -227,6 +226,7 @@
 		E32A719527A93C3A00D9E3FE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E37F937027A91CA7004454B7 /* MessageBox.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
