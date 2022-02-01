@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VSwiftMessageBox'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'A in-app notification/toast in swift mac application.'
 
   s.description      = 'A Message Box for MacOS application. Use it as in-app notification or toast.'
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'vong-e' => 'sinkim123321@gmail.com' }
-  s.source           = { :git => 'https://github.com/vong-e/VSwiftMessageBox.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/vong-e/VSwiftMessageBox', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform = :osx
