@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.platform = :osx
   s.osx.deployment_target = "10.10"
 
-  s.source_files = 'VSwiftMessageBox/Classes/**/*'
+  s.source_files = 'VSwiftMessageBox/**/*'
 
   # s.resource_bundles = {
   #   'VSwiftMessageBox' => ['VSwiftMessageBox/Assets/*.png']
