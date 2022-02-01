@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'VSwiftMessageBox_Example' do
+  pod 'VSwiftMessageBox', :path => '../'
+
+  target 'VSwiftMessageBox_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
