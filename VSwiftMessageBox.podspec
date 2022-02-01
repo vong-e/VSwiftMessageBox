@@ -8,7 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VSwiftMessageBox'
-  s.version          = '0.0.4'
+  s.version          = '0.0.6'
+  s.swift_version    = '5.0'
   s.summary          = 'A in-app notification/toast in swift mac application.'
 
   s.description      = 'A Message Box for MacOS application. Use it as in-app notification or toast.'
@@ -21,9 +22,9 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform = :osx
-  s.osx.deployment_target = "10.10"
+  s.osx.deployment_target = "10.13"
 
-  s.source_files = 'VSwiftMessageBox/**/*'
+  s.source_files = 'Sources/**/*.swift'
 
   # s.resource_bundles = {
   #   'VSwiftMessageBox' => ['VSwiftMessageBox/Assets/*.png']

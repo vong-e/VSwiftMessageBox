@@ -152,6 +152,7 @@
 		83636A7AB4928187E21F4563D71CB930 /* VSwiftMessageBox */ = {
 			isa = PBXGroup;
 			children = (
+				E32A719527A93C3A00D9E3FE /* Sources */,
 				E37F937027A91CA7004454B7 /* MessageBox.swift */,
 				CB56A0F710B4745ECD74D751F04623BF /* Pod */,
 				46A2CF856B78D225680588934657DEF6 /* Support Files */,
@@ -221,6 +222,13 @@
 				C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */,
 			);
 			name = "OS X";
+			sourceTree = "<group>";
+		};
+		E32A719527A93C3A00D9E3FE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
