@@ -1,5 +1,5 @@
 PODS:
-  - VSwiftMessageBox (0.0.1)
+  - VSwiftMessageBox (0.0.7)
 
 DEPENDENCIES:
   - VSwiftMessageBox (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  VSwiftMessageBox: e1b7c0aad048ecb5c355c300f665b9080e9e7d42
+  VSwiftMessageBox: 90e5ce9b1e38e8dbb159ff73ddb1e4935a3fcd09
 
 PODFILE CHECKSUM: 8c5b37c661ddd2d6adacfa1e057d69241ed4a519
 

@@ -8,7 +8,11 @@
 
 import Cocoa
 
+import VSwiftMessageBox
+
 class ViewController: NSViewController {
+    @IBOutlet weak var messageArea: NSBox! /// Message Area
+    
     @IBOutlet weak var allowMultipleMessagesCheckBox: NSButton!
     
     @IBOutlet weak var isReleaseWhenClickedCheckBox: NSButton!
@@ -17,10 +21,17 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         allowMultipleMessagesCheckBox.action = #selector(allowMultipleMeesages(sender:))
         isReleaseWhenClickedCheckBox.action = #selector(isReleaseWhenClicked(sender:))
+        
     }
+    
     
     @IBAction func addMessageButtonAction(_ sender: NSButton) {
         print("* Add Message")
+        let view = NSView(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor.red.cgColor
+        messageArea.addMessage(messageView: view)
+        print("섭뷰: \(self.view.subviews)")
     }
     
     @objc func allowMultipleMeesages(sender: NSButton) {

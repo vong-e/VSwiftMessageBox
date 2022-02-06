@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -710,7 +709,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="350"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box boxType="custom" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-uJ-IL8">
+                            <box boxType="custom" borderWidth="0.0" title="Message Box" translatesAutoresizingMaskIntoConstraints="NO" id="4z5-Kh-K8j">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                                <view key="contentView" id="hmx-1K-4BN">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="fillColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" title="Control Box" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-uJ-IL8">
                                 <rect key="frame" x="400" y="0.0" width="200" height="350"/>
                                 <view key="contentView" id="Quq-Zg-yN0">
                                     <rect key="frame" x="1" y="1" width="198" height="348"/>
@@ -765,14 +772,6 @@
                                     <constraint firstAttribute="width" constant="200" id="a9s-xr-jBD"/>
                                 </constraints>
                             </box>
-                            <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="4z5-Kh-K8j">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
-                                <view key="contentView" id="hmx-1K-4BN">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <color key="fillColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
-                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4z5-Kh-K8j" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="0eh-XZ-o9K"/>
@@ -787,6 +786,7 @@
                     <connections>
                         <outlet property="allowMultipleMessagesCheckBox" destination="uSL-4o-6j9" id="s9c-BA-o7V"/>
                         <outlet property="isReleaseWhenClickedCheckBox" destination="s62-SV-a40" id="eYP-N6-ehi"/>
+                        <outlet property="messageArea" destination="4z5-Kh-K8j" id="dvk-Gq-rdj"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
