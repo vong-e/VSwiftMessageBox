@@ -16,7 +16,7 @@
 		B3002F974F082BBDC0AF3D54DEACD70C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
 		B9BD27F1E565C08594EF35157D3551F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
 		E32ADB46AC7AB8A4239F7886BCF7A3B0 /* VSwiftMessageBox-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E668949DCB476E785794EC46BF2638AC /* VSwiftMessageBox-dummy.m */; };
-		E37F937127A91CA7004454B7 /* MessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F937027A91CA7004454B7 /* MessageBox.swift */; };
+		E37F937127A91CA7004454B7 /* VSwiftMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F937027A91CA7004454B7 /* VSwiftMessageBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		BCE8674E544C0A4CEB62372F0007C852 /* VSwiftMessageBox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VSwiftMessageBox-umbrella.h"; sourceTree = "<group>"; };
 		C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		CC6BDDF1D772ADB98E21C2AFEFAE7B1A /* VSwiftMessageBox-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VSwiftMessageBox-prefix.pch"; sourceTree = "<group>"; };
-		E37F937027A91CA7004454B7 /* MessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
+		E37F937027A91CA7004454B7 /* VSwiftMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSwiftMessageBox.swift; sourceTree = "<group>"; };
 		E49E1A7369D0A78F56B036AECFE1A2BB /* VSwiftMessageBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VSwiftMessageBox.release.xcconfig; sourceTree = "<group>"; };
 		E668949DCB476E785794EC46BF2638AC /* VSwiftMessageBox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VSwiftMessageBox-dummy.m"; sourceTree = "<group>"; };
 		ED5A0B1167703B873F589F38F245922F /* Pods-VSwiftMessageBox_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VSwiftMessageBox_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 		E32A719527A93C3A00D9E3FE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E37F937027A91CA7004454B7 /* MessageBox.swift */,
+				E37F937027A91CA7004454B7 /* VSwiftMessageBox.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E30CE491BDEBC3283C0DD57E2BD420 /* Pods-VSwiftMessageBox_Example-dummy.m in Sources */,
-				E37F937127A91CA7004454B7 /* MessageBox.swift in Sources */,
+				E37F937127A91CA7004454B7 /* VSwiftMessageBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
