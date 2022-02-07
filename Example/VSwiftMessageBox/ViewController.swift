@@ -26,17 +26,26 @@ class ViewController: NSViewController {
     
     
     @IBAction func addMessageButtonAction(_ sender: NSButton) {
-        print("* Add Message")
-        let view = NSView(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
-        view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.red.cgColor
-        messageArea.addMessage(messageView: view)
-        print("섭뷰: \(self.view.subviews)")
+//        print("* Add Message")
+//        let view = NSView(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
+//        view.wantsLayer = true
+//        view.layer?.backgroundColor = NSColor.red.cgColor
+//        messageArea.addMessage(messageView: view)
+//        print("섭뷰: \(self.view.subviews)")
+//        self.view.subviews.forEach { subview in
+//            print("SUBVIew: \(subview.accessibilityIdentifier()).")
+//            if subview.accessibilityIdentifier() == "VSwiftMessageContainer" {
+//                print("있댜ㅏ!")
+//            }
+//        }
+//
+        
     }
     
     @objc func allowMultipleMeesages(sender: NSButton) {
         if sender.state == .on {
             print("* Allow multiple messages.")
+            
         } else {
             print("* Disallow multiple messages.")
         }
