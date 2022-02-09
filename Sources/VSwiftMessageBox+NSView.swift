@@ -67,30 +67,39 @@ private let messageStackViewIdentifier: String = "VSwiftMessageStackView"
 public extension NSView {
     
     func addMessage(messageView: NSView, config: VSwiftMessageBoxConfig = VSwiftMessageBoxConfig()) {
-        print("애드메시지")
+        print("애드메시지 셀프: \(self)")
+        print("현재 섭뷰: \(self.subviews)")
         let message = getConfiguredMessage(message: messageView, config: config)
         message.widthAnchor.constraint(equalToConstant: messageView.frame.width).isActive = true
         message.heightAnchor.constraint(equalToConstant: messageView.frame.height).isActive = true
         
         /// 1. Get message container box
-        let containerBox = NSView().getMessageContainerBox(config: config)
-        addSubview(containerBox)
+        let containerBox = getMessageContainerBox(config: config)
+        print("가져온 컨테이너박스: \(containerBox)")
+        self.addSubview(containerBox)todo. 했는데 왜 추가안되는거지?
+        
+        print("애드 후 셀프섭뷰: \(self.subviews)")
+        print("containerbox: \(containerBox)")
         containerBox.constraintToSuperview()
         
         /// 2. Get message stackview
-        let messageStackView = NSView().getMessageStackView(config: config)
+        let messageStackView = getMessageStackView(config: config)
         
         /// 3. Setting messagebox position (constraint, alignment)
         setMessageBoxPosition(container: containerBox, messageStackView: messageStackView, config: config)
       
-        /// 4. isnet
-        
         if config.isAllowMultipleMessages {
+            print("allow multiple messages")
             messageStackView.addArrangedSubview(message)
         } else {
+            print("not allow multiple messages")
+            print("stackview's subviews: \(messageStackView.subviews)")
             messageStackView.subviews.removeAll()
             messageStackView.addArrangedSubview(message)
         }
+        
+        print("==> stackview's subviews: \(messageStackView.subviews)")
+        
         
         if config.isReleaseWhenClicked {
             print("이즈릴리즈웬클릭")
@@ -100,12 +109,7 @@ public extension NSView {
             print("이즈 낫 릴리즈웬클릭")
         }
         
-        addSubview(messageStackView)
-        
-        switch config.messageBoxPosition { //todo. 포지션별 컨스트레인트
-        default:
-            messageStackView.setBottomRightConstraint()
-        }
+//        addSubview(messageStackView)
     }
     
     
@@ -113,16 +117,19 @@ public extension NSView {
      1. Get message container box
      */
     fileprivate func getMessageContainerBox(config: VSwiftMessageBoxConfig) -> NSBox {
+        print("셀픕: \(self)")
+        print("섭뷰스: \(self.subviews.forEach{$0.accessibilityIdentifier()})")
         guard let containerBox: NSBox = self.subviews.filter({$0.accessibilityIdentifier() == messageContainerIdentifier}).first as? NSBox else {
             let container = NSBox()
+            print("컨테이너박스 없음. 새로만들어: \(container)")
             container.setAccessibilityIdentifier(messageContainerIdentifier)
             container.boxType = .custom
             container.borderWidth = 0
             container.cornerRadius = 0
-            container.fillColor = config.deemColor
+            container.fillColor = NSColor.blue// config.deemColor
             return container
         }
-        
+        print("컨테이너박스 있음: \(containerBox)")
         return containerBox
     }
     
@@ -132,14 +139,15 @@ public extension NSView {
     fileprivate func getMessageStackView(config: VSwiftMessageBoxConfig) -> NSStackView {
         guard let messageStackView: NSStackView = self.subviews.filter({$0.accessibilityIdentifier() == messageStackViewIdentifier}).first as? NSStackView else {
             let messageStackView = NSStackView()
+            messageStackView.setAccessibilityIdentifier(messageStackViewIdentifier)
             messageStackView.orientation = .vertical
             messageStackView.alignment = .trailing
             messageStackView.distribution = .fill
             messageStackView.spacing = config.messagesSpacing
-            
+            print("스택뷰 없어서 만듦: \(messageStackView)")
             return messageStackView
         }
-        
+        print("스택뷰 있음: \(messageStackView)")
         return messageStackView
     }
     
@@ -149,23 +157,57 @@ public extension NSView {
     fileprivate func setMessageBoxPosition(container: NSBox, messageStackView: NSStackView, config: VSwiftMessageBoxConfig) {
         container.addSubview(messageStackView)
         messageStackView.translatesAutoresizingMaskIntoConstraints = false
-        messageStackView.edgeInsets = config.messageBoxEdgeInsets //todo. 이거 제대로 먹히나 테스트
+        
+        let vMargin = config.verticalMargin
+        let hMargin = config.horizontalMargin
         
         switch config.messageBoxPosition {
         case .topLeft:
-            messageStackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 0)
+            messageStackView.alignment = .leading
+            messageStackView.topAnchor.constraint(equalTo: container.topAnchor, constant: hMargin).isActive = true
+            messageStackView.bottomAnchor.constraint(greaterThanOrEqualTo: container.bottomAnchor, constant: hMargin).isActive = true
+            messageStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(greaterThanOrEqualTo: container.trailingAnchor, constant: vMargin).isActive = true
+            
         case .topCenter:
-            <#code#>
+            messageStackView.alignment = .centerX
+            messageStackView.topAnchor.constraint(equalTo: container.topAnchor, constant: hMargin).isActive = true
+            messageStackView.bottomAnchor.constraint(greaterThanOrEqualTo: container.bottomAnchor, constant: hMargin).isActive = true
+            messageStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
+        
         case .topRight:
-            <#code#>
+            messageStackView.alignment = .trailing
+            messageStackView.topAnchor.constraint(equalTo: container.topAnchor, constant: hMargin).isActive = true
+            messageStackView.bottomAnchor.constraint(greaterThanOrEqualTo: container.bottomAnchor, constant: hMargin).isActive = true
+            messageStackView.leadingAnchor.constraint(greaterThanOrEqualTo: container.leadingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
+            
         case .center:
-            <#code#>
+            messageStackView.alignment = .centerX
+            messageStackView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+            messageStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+            
         case .bottomLeft:
-            <#code#>
+            messageStackView.alignment = .leading
+            messageStackView.topAnchor.constraint(greaterThanOrEqualTo: container.topAnchor, constant: hMargin).isActive = true
+            messageStackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: hMargin).isActive = true
+            messageStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(greaterThanOrEqualTo: container.trailingAnchor, constant: vMargin).isActive = true
+            
         case .bottomCenter:
-            <#code#>
+            messageStackView.alignment = .centerX
+            messageStackView.topAnchor.constraint(greaterThanOrEqualTo: container.topAnchor, constant: hMargin).isActive = true
+            messageStackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: hMargin).isActive = true
+            messageStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
+            
         case .bottomRight:
-            <#code#>
+            messageStackView.alignment = .trailing
+            messageStackView.topAnchor.constraint(greaterThanOrEqualTo: container.topAnchor, constant: hMargin).isActive = true
+            messageStackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: hMargin).isActive = true
+            messageStackView.leadingAnchor.constraint(greaterThanOrEqualTo: container.leadingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
         }
     }
     
@@ -199,11 +241,14 @@ public extension NSView {
         }
         
         print("메시지 클릭드: ", targetView)
-        targetView.removeFromSuperview()
+//        targetView.removeFromSuperview()
+        self.removeMessage(message: targetView)
     }
     
-    func removeMessage(message: NSView) {
+    fileprivate func removeMessage(message: NSView) {
         print("리무브메시지")
+        message.removeFromSuperview()
+        /// todo. 메시지 개수 0되면 메시지박스 날려버리기
     }
     
     fileprivate func constraintToSuperview() {
