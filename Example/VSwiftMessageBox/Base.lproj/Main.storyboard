@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -715,7 +716,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <color key="fillColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box boxType="custom" title="Control Box" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-uJ-IL8">
                                 <rect key="frame" x="400" y="0.0" width="200" height="350"/>
@@ -724,8 +725,22 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brb-7Y-jYp">
-                                            <rect key="frame" x="13" y="140" width="173" height="68"/>
+                                            <rect key="frame" x="13" y="126" width="173" height="96"/>
                                             <subviews>
+                                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-RV-zuV">
+                                                    <rect key="frame" x="-3" y="72" width="78" height="25"/>
+                                                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="0JA-D9-SyH" id="waX-1W-SrR">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="menu"/>
+                                                        <menu key="menu" id="wta-U1-Afw">
+                                                            <items>
+                                                                <menuItem title="Item 1" state="on" id="0JA-D9-SyH"/>
+                                                                <menuItem title="Item 2" id="BTg-zK-6UT"/>
+                                                                <menuItem title="Item 3" id="jXE-96-Ho1"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                </popUpButton>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I6g-Gr-7pL">
                                                     <rect key="frame" x="-7" y="41" width="116" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Add Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BHo-qN-IRX">
@@ -738,7 +753,7 @@
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uSL-4o-6j9">
                                                     <rect key="frame" x="0.0" y="23" width="175" height="18"/>
-                                                    <buttonCell key="cell" type="check" title="Allow multiple messages" bezelStyle="regularSquare" imagePosition="right" inset="2" id="p36-Gc-o0o">
+                                                    <buttonCell key="cell" type="check" title="Allow multiple messages" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="p36-Gc-o0o">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -755,8 +770,10 @@
                                                 <integer value="1000"/>
                                                 <integer value="1000"/>
                                                 <integer value="1000"/>
+                                                <integer value="1000"/>
                                             </visibilityPriorities>
                                             <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
                                                 <real value="3.4028234663852886e+38"/>
                                                 <real value="3.4028234663852886e+38"/>
                                                 <real value="3.4028234663852886e+38"/>
@@ -787,6 +804,7 @@
                         <outlet property="allowMultipleMessagesCheckBox" destination="uSL-4o-6j9" id="s9c-BA-o7V"/>
                         <outlet property="isReleaseWhenClickedCheckBox" destination="s62-SV-a40" id="eYP-N6-ehi"/>
                         <outlet property="messageArea" destination="4z5-Kh-K8j" id="dvk-Gq-rdj"/>
+                        <outlet property="positionPopUpButton" destination="8Jq-RV-zuV" id="avg-Rj-NTF"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

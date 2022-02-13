@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2719EB3BE362F8616524D69CB6EB455B /* VSwiftMessageBox+NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32ED5945FE33C32E919FC1935FD064A /* VSwiftMessageBox+NSView.swift */; };
-		316C6E92E593B499BBCF8FF9C86E020C /* VSwiftMessageBox-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FEB48C80678D78EFE5B1DF5D5569CFD4 /* VSwiftMessageBox-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E6C0511011B89EA115932AC3A23F342 /* VSwiftMessageBox+NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357DD5DEFBDE9CB4574E91581551776 /* VSwiftMessageBox+NSView.swift */; };
+		316C6E92E593B499BBCF8FF9C86E020C /* VSwiftMessageBox-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C077E919558C5DF49996D275D5373680 /* VSwiftMessageBox-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E30CE491BDEBC3283C0DD57E2BD420 /* Pods-VSwiftMessageBox_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 00976D2B6DA3A4ACF4FCB68AED06BCC9 /* Pods-VSwiftMessageBox_Example-dummy.m */; };
 		7752E74A1F17E07B2E950BF4AC0632C8 /* Pods-VSwiftMessageBox_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 83AF15B834573035CB90797B559BCE41 /* Pods-VSwiftMessageBox_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7F1B3BCA92117BB06F86018602997237 /* VSwiftMessageBox-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDD6B3DCEE203DDD06ABED52A14475B /* VSwiftMessageBox-dummy.m */; };
 		813AAB4FEAD6FBA2452D3E4DC50606B7 /* Pods-VSwiftMessageBox_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8216F2303B6C89900123ACCE9749D374 /* Pods-VSwiftMessageBox_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88E953431CE11D5BA37C8DE3ECF3B412 /* Pods-VSwiftMessageBox_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 42778841B4C8D02C8891E897D2A65242 /* Pods-VSwiftMessageBox_Tests-dummy.m */; };
 		AB3EAB8C4140F873CB383F4FC31DB167 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
 		B3002F974F082BBDC0AF3D54DEACD70C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
 		B9BD27F1E565C08594EF35157D3551F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
+		D85DF4906098E600689C9DA034350445 /* VSwiftMessageBox-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F1043E99F1D97FAF40D17BD20BBE9A /* VSwiftMessageBox-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,18 +38,20 @@
 
 /* Begin PBXFileReference section */
 		00976D2B6DA3A4ACF4FCB68AED06BCC9 /* Pods-VSwiftMessageBox_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VSwiftMessageBox_Example-dummy.m"; sourceTree = "<group>"; };
-		03230A534B77A2B6E323D4336877EEAF /* VSwiftMessageBox-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VSwiftMessageBox-prefix.pch"; sourceTree = "<group>"; };
 		10AF08084803CF669A94B9E35AA66884 /* Pods-VSwiftMessageBox_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VSwiftMessageBox_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		24A6D6B873BC03AEA7AE3CB3AAF2AC33 /* VSwiftMessageBox.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = VSwiftMessageBox.modulemap; sourceTree = "<group>"; };
 		24A8BA370B2BDCBC2ED5C74A856129E6 /* Pods-VSwiftMessageBox_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VSwiftMessageBox_Example-frameworks.sh"; sourceTree = "<group>"; };
 		28D83DCD813720A2021793F9F704BD34 /* Pods-VSwiftMessageBox_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VSwiftMessageBox_Tests-Info.plist"; sourceTree = "<group>"; };
-		2BFCB16F26A18F321D512919AB9A412B /* VSwiftMessageBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VSwiftMessageBox.release.xcconfig; sourceTree = "<group>"; };
-		34E605ABB2BDECCC17036EDD157744A2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		30288FB605430DE8E277DF590520E63A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		3BEAC58F4EAC3D7086A3F0921E58DF34 /* Pods-VSwiftMessageBox_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-VSwiftMessageBox_Tests"; path = Pods_VSwiftMessageBox_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E2684124E6571C362F46734814999AF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		42778841B4C8D02C8891E897D2A65242 /* Pods-VSwiftMessageBox_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VSwiftMessageBox_Tests-dummy.m"; sourceTree = "<group>"; };
 		44EC563E8D33FE83FE982218B0EC2C6D /* Pods-VSwiftMessageBox_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-VSwiftMessageBox_Tests.modulemap"; sourceTree = "<group>"; };
+		524ADC6E8E75554043B0D1A141036028 /* VSwiftMessageBox.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = VSwiftMessageBox.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5332D6F2EB43D7646CCF7B0B26BF6D01 /* VSwiftMessageBox */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = VSwiftMessageBox; path = VSwiftMessageBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B0D56F8CA6B26CB52ADE24E7ECC8FFE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6493FBECB55368BD8C4318362203F41C /* VSwiftMessageBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VSwiftMessageBox.debug.xcconfig; sourceTree = "<group>"; };
 		6F080AC73200C64996B734C9A3FED89F /* Pods-VSwiftMessageBox_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VSwiftMessageBox_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		7277DC96F7379A272FAD0DA592C4FAA0 /* VSwiftMessageBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VSwiftMessageBox.release.xcconfig; sourceTree = "<group>"; };
 		7C1D14EF5B99090503A19383D11ECDBB /* Pods-VSwiftMessageBox_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VSwiftMessageBox_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7EEBDF4CC0007EAA77B9394DFE4306B9 /* Pods-VSwiftMessageBox_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VSwiftMessageBox_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		7F9228CC1A33867FC65152A3DBC9FA0E /* Pods-VSwiftMessageBox_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VSwiftMessageBox_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -58,18 +60,16 @@
 		8AB6AD86C5291B4790006BF713BDF46A /* Pods-VSwiftMessageBox_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-VSwiftMessageBox_Example"; path = Pods_VSwiftMessageBox_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8C4BBB7A952AD11FA6459506CB997A /* Pods-VSwiftMessageBox_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VSwiftMessageBox_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9D15DCDEAFA1AFE1197B6F490B0915A5 /* Pods-VSwiftMessageBox_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-VSwiftMessageBox_Example.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A05F297A0E7928A6BE204F524B2BDEE8 /* Pods-VSwiftMessageBox_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VSwiftMessageBox_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		A32ED5945FE33C32E919FC1935FD064A /* VSwiftMessageBox+NSView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "VSwiftMessageBox+NSView.swift"; path = "Sources/VSwiftMessageBox+NSView.swift"; sourceTree = "<group>"; };
-		A8FC1A313B72AB2792A4F97ED7A4F634 /* VSwiftMessageBox.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = VSwiftMessageBox.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B827462E41F6F72BB904476695BA9CF6 /* VSwiftMessageBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VSwiftMessageBox.debug.xcconfig; sourceTree = "<group>"; };
+		A0D54C63019B3BB9A2A864050CAE8C7C /* VSwiftMessageBox-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "VSwiftMessageBox-Info.plist"; sourceTree = "<group>"; };
+		B1375EA391B00C13B2F79B3BC33A5D94 /* VSwiftMessageBox-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VSwiftMessageBox-prefix.pch"; sourceTree = "<group>"; };
+		B357DD5DEFBDE9CB4574E91581551776 /* VSwiftMessageBox+NSView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "VSwiftMessageBox+NSView.swift"; path = "Sources/VSwiftMessageBox+NSView.swift"; sourceTree = "<group>"; };
+		B3F1043E99F1D97FAF40D17BD20BBE9A /* VSwiftMessageBox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VSwiftMessageBox-dummy.m"; sourceTree = "<group>"; };
 		BCC97B1062C5C4E48403B5B6EA8BE9EF /* Pods-VSwiftMessageBox_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VSwiftMessageBox_Example-Info.plist"; sourceTree = "<group>"; };
+		C077E919558C5DF49996D275D5373680 /* VSwiftMessageBox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VSwiftMessageBox-umbrella.h"; sourceTree = "<group>"; };
 		C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		D24465E89570563E7D859B93C9F2C600 /* VSwiftMessageBox.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = VSwiftMessageBox.modulemap; sourceTree = "<group>"; };
-		D9FBBEFFE50D570FB97E8F178BC4C095 /* VSwiftMessageBox-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "VSwiftMessageBox-Info.plist"; sourceTree = "<group>"; };
-		ECDD6B3DCEE203DDD06ABED52A14475B /* VSwiftMessageBox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VSwiftMessageBox-dummy.m"; sourceTree = "<group>"; };
 		ED5A0B1167703B873F589F38F245922F /* Pods-VSwiftMessageBox_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VSwiftMessageBox_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FEB48C80678D78EFE5B1DF5D5569CFD4 /* VSwiftMessageBox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VSwiftMessageBox-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,29 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B46A9BBEEC75D582062F5286E954F3E /* Support Files */ = {
+		12D531B5B840B0DBA034A41AC83A5BF3 /* VSwiftMessageBox */ = {
 			isa = PBXGroup;
 			children = (
-				D24465E89570563E7D859B93C9F2C600 /* VSwiftMessageBox.modulemap */,
-				ECDD6B3DCEE203DDD06ABED52A14475B /* VSwiftMessageBox-dummy.m */,
-				D9FBBEFFE50D570FB97E8F178BC4C095 /* VSwiftMessageBox-Info.plist */,
-				03230A534B77A2B6E323D4336877EEAF /* VSwiftMessageBox-prefix.pch */,
-				FEB48C80678D78EFE5B1DF5D5569CFD4 /* VSwiftMessageBox-umbrella.h */,
-				B827462E41F6F72BB904476695BA9CF6 /* VSwiftMessageBox.debug.xcconfig */,
-				2BFCB16F26A18F321D512919AB9A412B /* VSwiftMessageBox.release.xcconfig */,
+				B357DD5DEFBDE9CB4574E91581551776 /* VSwiftMessageBox+NSView.swift */,
+				2BD445EC99504E144C7B589A6C65A20B /* Pod */,
+				9E5069340FE3E1CEC0D32DBBE8BA0550 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/VSwiftMessageBox";
-			sourceTree = "<group>";
-		};
-		114E18E42AAB70803FCA9C3B69CAD4F1 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5B0D56F8CA6B26CB52ADE24E7ECC8FFE /* LICENSE */,
-				34E605ABB2BDECCC17036EDD157744A2 /* README.md */,
-				A8FC1A313B72AB2792A4F97ED7A4F634 /* VSwiftMessageBox.podspec */,
-			);
-			name = Pod;
+			name = VSwiftMessageBox;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		167B364FDDFCC9A8D74F7EA388070C67 /* Pods-VSwiftMessageBox_Example */ = {
@@ -145,9 +131,19 @@
 		2AA6FF3B163186174317CD3A790A2D42 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				30D24F3F9077774072176DE40DDE7765 /* VSwiftMessageBox */,
+				12D531B5B840B0DBA034A41AC83A5BF3 /* VSwiftMessageBox */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		2BD445EC99504E144C7B589A6C65A20B /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				3E2684124E6571C362F46734814999AF /* LICENSE */,
+				30288FB605430DE8E277DF590520E63A /* README.md */,
+				524ADC6E8E75554043B0D1A141036028 /* VSwiftMessageBox.podspec */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		2BE7FBAF4FEC92F4F3BB0B23F204A04A /* Targets Support Files */ = {
@@ -157,17 +153,6 @@
 				8958306B059B29016A2986D498E5B352 /* Pods-VSwiftMessageBox_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		30D24F3F9077774072176DE40DDE7765 /* VSwiftMessageBox */ = {
-			isa = PBXGroup;
-			children = (
-				A32ED5945FE33C32E919FC1935FD064A /* VSwiftMessageBox+NSView.swift */,
-				114E18E42AAB70803FCA9C3B69CAD4F1 /* Pod */,
-				0B46A9BBEEC75D582062F5286E954F3E /* Support Files */,
-			);
-			name = VSwiftMessageBox;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		8958306B059B29016A2986D498E5B352 /* Pods-VSwiftMessageBox_Tests */ = {
@@ -184,6 +169,21 @@
 			);
 			name = "Pods-VSwiftMessageBox_Tests";
 			path = "Target Support Files/Pods-VSwiftMessageBox_Tests";
+			sourceTree = "<group>";
+		};
+		9E5069340FE3E1CEC0D32DBBE8BA0550 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				24A6D6B873BC03AEA7AE3CB3AAF2AC33 /* VSwiftMessageBox.modulemap */,
+				B3F1043E99F1D97FAF40D17BD20BBE9A /* VSwiftMessageBox-dummy.m */,
+				A0D54C63019B3BB9A2A864050CAE8C7C /* VSwiftMessageBox-Info.plist */,
+				B1375EA391B00C13B2F79B3BC33A5D94 /* VSwiftMessageBox-prefix.pch */,
+				C077E919558C5DF49996D275D5373680 /* VSwiftMessageBox-umbrella.h */,
+				6493FBECB55368BD8C4318362203F41C /* VSwiftMessageBox.debug.xcconfig */,
+				7277DC96F7379A272FAD0DA592C4FAA0 /* VSwiftMessageBox.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/VSwiftMessageBox";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -258,7 +258,7 @@
 			buildConfigurationList = FB1BD89D45E055C42B2A27A87B12C9D0 /* Build configuration list for PBXNativeTarget "VSwiftMessageBox" */;
 			buildPhases = (
 				C3937C7B23759C9ACC5159A5392668B6 /* Headers */,
-				E9D975EBB14BB2E388DDF1AE173FC834 /* Sources */,
+				15B53DB026774A46AE62836227805C27 /* Sources */,
 				E5EE070ADB3765C39D62AE472D860F1D /* Frameworks */,
 				300CC623EF46AEF597624E3EAC55134B /* Resources */,
 			);
@@ -363,6 +363,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		15B53DB026774A46AE62836227805C27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6C0511011B89EA115932AC3A23F342 /* VSwiftMessageBox+NSView.swift in Sources */,
+				D85DF4906098E600689C9DA034350445 /* VSwiftMessageBox-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A5F374A85ACE97E2537D5D960B3F3E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,15 +385,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88E953431CE11D5BA37C8DE3ECF3B412 /* Pods-VSwiftMessageBox_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9D975EBB14BB2E388DDF1AE173FC834 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2719EB3BE362F8616524D69CB6EB455B /* VSwiftMessageBox+NSView.swift in Sources */,
-				7F1B3BCA92117BB06F86018602997237 /* VSwiftMessageBox-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +408,7 @@
 /* Begin XCBuildConfiguration section */
 		35D4A7C4F05A072FF1D9D328E9DF823E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B827462E41F6F72BB904476695BA9CF6 /* VSwiftMessageBox.debug.xcconfig */;
+			baseConfigurationReference = 6493FBECB55368BD8C4318362203F41C /* VSwiftMessageBox.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -695,7 +695,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -703,7 +704,7 @@
 		};
 		D6AF4D5DF16FBB9F5272D7390BCEF83D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BFCB16F26A18F321D512919AB9A412B /* VSwiftMessageBox.release.xcconfig */;
+			baseConfigurationReference = 7277DC96F7379A272FAD0DA592C4FAA0 /* VSwiftMessageBox.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;

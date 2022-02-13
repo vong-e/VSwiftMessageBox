@@ -14,6 +14,8 @@
 		ED83F68020348A760038D96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED83F67F20348A760038D96B /* Assets.xcassets */; };
 		ED83F68320348A760038D96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED83F68120348A760038D96B /* Main.storyboard */; };
 		ED83F68F20348A760038D96B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F68E20348A760038D96B /* Tests.swift */; };
+		F6715E6E27B930880037496E /* NSColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1344927B92CC2006AA59A /* NSColor+Extension.swift */; };
+		F6715E6F27B9308E0037496E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6715E6C27B930240037496E /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		ED83F69020348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE3971C63A8F73EB7742B950 /* Pods-VSwiftMessageBox_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSwiftMessageBox_Example.release.xcconfig"; path = "Target Support Files/Pods-VSwiftMessageBox_Example/Pods-VSwiftMessageBox_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F6167F901299C23121D99B3F /* Pods-VSwiftMessageBox_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSwiftMessageBox_Tests.debug.xcconfig"; path = "Target Support Files/Pods-VSwiftMessageBox_Tests/Pods-VSwiftMessageBox_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F6715E6C27B930240037496E /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		F6B1344927B92CC2006AA59A /* NSColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 			children = (
 				ED83F67B20348A760038D96B /* AppDelegate.swift */,
 				ED83F67D20348A760038D96B /* ViewController.swift */,
+				F6715E6C27B930240037496E /* MessageView.swift */,
+				F6B1344927B92CC2006AA59A /* NSColor+Extension.swift */,
 				ED83F67F20348A760038D96B /* Assets.xcassets */,
 				ED83F68120348A760038D96B /* Main.storyboard */,
 				ED83F68420348A760038D96B /* Info.plist */,
@@ -311,8 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6715E6F27B9308E0037496E /* MessageView.swift in Sources */,
 				ED83F67E20348A760038D96B /* ViewController.swift in Sources */,
 				ED83F67C20348A760038D96B /* AppDelegate.swift in Sources */,
+				F6715E6E27B930880037496E /* NSColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
