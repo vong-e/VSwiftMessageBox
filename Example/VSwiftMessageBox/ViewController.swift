@@ -19,7 +19,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var isReleaseWhenClickedCheckBox: NSButton!
     
-    private var messagePosition: MessageBoxPosition = .bottomRight
+    private var messagePosition: MessageBoxPosition = .bottomTrailing
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +34,22 @@ class ViewController: NSViewController {
         let positionList: [String] = MessageBoxPosition.allCases.map{$0.rawValue}
         positionPopUpButton.addItems(withTitles: positionList)
         positionPopUpButton.action = #selector(positionPopUpButtonAction(_:))
-        positionPopUpButton.selectItem(withTitle: MessageBoxPosition.bottomRight.rawValue)
+        positionPopUpButton.selectItem(withTitle: MessageBoxPosition.bottomTrailing.rawValue)
     }
     @objc func positionPopUpButtonAction(_ sender: NSPopUpButton) {
-        let position: MessageBoxPosition = MessageBoxPosition.init(rawValue: sender.title) ?? .bottomRight
+        let position: MessageBoxPosition = MessageBoxPosition.init(rawValue: sender.title) ?? .bottomTrailing
         self.messagePosition = position
         print("* Position Changed: \(position)")
         NSView().releaseVSwiftMessageBox()
+        self.positionPopUpButton.selectItem(withTitle: position.rawValue)
     }
     
     @IBAction func addMessageButtonAction(_ sender: NSButton) {
         print("* Add Message")
         let messageView = MessageView(frame: NSRect(x: 0, y: 0, width: 300, height: 60))
-//        messageView.setFrameSize(NSSize(width: 250, height: 50))
-        let config = VSwiftMessageBoxConfig()
-        //todo. 컨피그 바꾸는거 다른라이브러리꺼 봐보기, max message 갯수 설정하기!!!
-//        let config = VSwiftMessageBoxConfig()
-        messageArea.addMessage(messageView: messageView)
+        var config = VSwiftMessageBox.defaultConfig
+        config.setMessageBox(position: self.messagePosition)
+        messageArea.addMessage(messageView: messageView, config: config)
     }
     
     @objc func allowMultipleMeesages(sender: NSButton) {

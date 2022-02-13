@@ -13,60 +13,79 @@ import Cocoa
  */
 public struct VSwiftMessageBoxConfig {
     /// Messgebox postion
-    let messageBoxPosition: MessageBoxPosition = .bottomRight
+    var messageBoxPosition: MessageBoxPosition = .bottomTrailing
     
     /// Messages spacing
-    let messagesSpacing: CGFloat = 10
+    var messagesSpacing: CGFloat = 10
     
     /// MessageBox allows multiple messages
-    let isAllowMultipleMessages: Bool = true
+    var isAllowMultipleMessages: Bool = true
     
         
     /// Release message when clicked.
     ///
     /// if true -> message release when clicked
     /// if false -> message not release when clicked (message remains during duration)
-    let isReleaseWhenClicked: Bool = true
+    var isReleaseWhenClicked: Bool = true
     
     /// Message showing duration
-    let duration: CGFloat = 2.0
+    var duration: CGFloat = 2.0
     
     /// Message corner radius
-    let messageCornerRadius: CGFloat = 10.0
+    var messageCornerRadius: CGFloat = 10.0
     
     /// Message opacity
-    let messageOpacity: Float = 0.9
+    var messageOpacity: Float = 0.9
     
     /// Deem Color
-    let deemColor: NSColor = NSColor(named: "bg_deem")! //todo. 다크모드 지원한다는거 예시로 보여주기
+    var deemColor: NSColor = NSColor.clear //todo. 다크모드 지원한다는거 예시로 보여주기
     
     /// Vertical Margin
-    let verticalMargin: CGFloat = 10
+    var verticalMargin: CGFloat = 10
     
     /// Horizontal Margin
-    let horizontalMargin: CGFloat = 10
+    var horizontalMargin: CGFloat = 10
     
-    public init() {}
+    
+    public init(position: MessageBoxPosition, messageSpacing: CGFloat, isAllowMultipleMessages: Bool, isReleaseWhenClicked: Bool, duration: CGFloat, messageCornerRadius: CGFloat, messageOpacity: Float, deemColor: NSColor, verticalMargin: CGFloat, horizontalMargin: CGFloat) {
+        self.messageBoxPosition = position
+        self.messagesSpacing = messageSpacing
+        self.isAllowMultipleMessages = isAllowMultipleMessages
+        self.isReleaseWhenClicked = isReleaseWhenClicked
+        self.duration = duration
+        self.messageCornerRadius = messageCornerRadius
+        self.messageOpacity = messageOpacity
+        self.deemColor = deemColor
+        self.verticalMargin = verticalMargin
+        self.horizontalMargin = horizontalMargin
+    }
+    
+    /// Set message box position
+    public mutating func setMessageBox(position: MessageBoxPosition) {
+        self.messageBoxPosition = position
+    }
+        //todo. 이거 다 셋하는거만들어주기
 }
 
 public enum MessageBoxPosition: String, CaseIterable {
-    case topLeft
+    case topLeading
     case topCenter
-    case topRight
+    case topTrailing
     
     case center
     
-    case bottomLeft
+    case bottomLeading
     case bottomCenter
-    case bottomRight
+    case bottomTrailing
 }
 
+public let defaultConfig = VSwiftMessageBoxConfig(position: .bottomTrailing, messageSpacing: 10, isAllowMultipleMessages: true, isReleaseWhenClicked: true, duration: 2, messageCornerRadius: 10, messageOpacity: 0.9, deemColor: .clear, verticalMargin: 10, horizontalMargin: 10)
 private let messageContainerIdentifier: String = "VSwiftMessageContainer"
 private let messageStackViewIdentifier: String = "VSwiftMessageStackView"
 
 public extension NSView {
     
-    func addMessage(messageView: NSView, config: VSwiftMessageBoxConfig = VSwiftMessageBoxConfig()) {
+    func addMessage(messageView: NSView, config: VSwiftMessageBoxConfig = defaultConfig) {
         print("애드메시지 셀프: \(self)")
         print("현재 섭뷰: \(self.subviews)")
         
@@ -170,7 +189,7 @@ public extension NSView {
         let hMargin = config.horizontalMargin
         
         switch config.messageBoxPosition {
-        case .topLeft:
+        case .topLeading:
             messageStackView.alignment = .leading
             messageStackView.topAnchor.constraint(equalTo: container.topAnchor, constant: hMargin).isActive = true
 //            messageStackView.bottomAnchor.constraint(greaterThanOrEqualTo: container.bottomAnchor, constant: hMargin).isActive = true
@@ -184,19 +203,19 @@ public extension NSView {
             messageStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: vMargin).isActive = true
             messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
         
-        case .topRight:
+        case .topTrailing:
             messageStackView.alignment = .trailing
             messageStackView.topAnchor.constraint(equalTo: container.topAnchor, constant: hMargin).isActive = true
 //            messageStackView.bottomAnchor.constraint(greaterThanOrEqualTo: container.bottomAnchor, constant: hMargin).isActive = true
             messageStackView.leadingAnchor.constraint(greaterThanOrEqualTo: container.leadingAnchor, constant: vMargin).isActive = true
-            messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
+            messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -vMargin).isActive = true
             
         case .center:
             messageStackView.alignment = .centerX
             messageStackView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
             messageStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
             
-        case .bottomLeft:
+        case .bottomLeading:
             messageStackView.alignment = .leading
 //            messageStackView.topAnchor.constraint(greaterThanOrEqualTo: container.topAnchor, constant: hMargin).isActive = true
             messageStackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -hMargin).isActive = true
@@ -210,7 +229,7 @@ public extension NSView {
             messageStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: vMargin).isActive = true
             messageStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: vMargin).isActive = true
             
-        case .bottomRight:
+        case .bottomTrailing:
             messageStackView.alignment = .trailing
 //            messageStackView.topAnchor.constraint(greaterThanOrEqualTo: container.topAnchor, constant: hMargin).isActive = true
             messageStackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -hMargin).isActive = true

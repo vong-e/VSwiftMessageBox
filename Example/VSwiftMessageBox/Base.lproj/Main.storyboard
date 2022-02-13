@@ -760,7 +760,7 @@
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s62-SV-a40">
                                                     <rect key="frame" x="0.0" y="-1" width="166" height="18"/>
-                                                    <buttonCell key="cell" type="check" title="Is release when clicked" bezelStyle="regularSquare" imagePosition="right" inset="2" id="D52-Yp-cja">
+                                                    <buttonCell key="cell" type="check" title="Is release when clicked" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="D52-Yp-cja">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
