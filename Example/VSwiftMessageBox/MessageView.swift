@@ -39,7 +39,7 @@ class MessageView: NSView {
         textField.backgroundColor = .clear
         textField.alignment = .left
         textField.font = .boldSystemFont(ofSize: 14)
-        textField.stringValue = "Message Arrived! 📬"
+        textField.stringValue = "Message Arrived! 💌"
         return textField
     }()
     
@@ -93,7 +93,14 @@ class MessageView: NSView {
         stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 16).isActive = true
     }
     
-    func constraintToSuperView(childView: NSView) {
+    public func changeMessage(title: String, subtitle: String) {
+        DispatchQueue.main.async {
+            self.messageTitleTextField.stringValue = title
+            self.messageSubTitleTextField.stringValue = subtitle
+        }
+    }
+    
+    private func constraintToSuperView(childView: NSView) {
         guard let superview = childView.superview else {
             return
         }

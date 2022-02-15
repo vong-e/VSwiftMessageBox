@@ -2,7 +2,7 @@
 //  NSColor+Extension.swift
 //  VSwiftMessageBox
 //
-//  Created by KIM vong-e on 2022/02/13.
+//  Created by vong-e on 2022/02/13.
 //  Copyright (c) 2022 vong-e. All rights reserved.
 //
 

@@ -13,58 +13,58 @@ import Cocoa
  */
 public struct VSwiftMessageBoxConfig {
     /// Messgebox postion
-    var messageBoxPosition: MessageBoxPosition = .bottomTrailing
+    public var messageBoxPosition: MessageBoxPosition = .bottomTrailing
     
     /// Messages spacing
-    var messagesSpacing: CGFloat = 10
+    public var messagesSpacing: CGFloat = 10
     
     /// MessageBox allows multiple messages
-    var isAllowMultipleMessages: Bool = true
-    
+    public var isAllowMultipleMessages: Bool = true
         
     /// Release message when clicked.
     ///
     /// if true -> message release when clicked
     /// if false -> message not release when clicked (message remains during duration)
-    var isReleaseWhenClicked: Bool = true
+    public var isReleaseWhenClicked: Bool = true
     
     /// Message showing duration
-    var duration: CGFloat = 2.0
+    public var showingDuration: CGFloat = 2.0
+    
+    /// Message appear animation duration
+    public var appearDuration: CGFloat = 0.5
+    
+    /// Message disappear animation duration
+    public var disappearDuration: CGFloat = 0.5
     
     /// Message corner radius
-    var messageCornerRadius: CGFloat = 10.0
+    public var messageCornerRadius: CGFloat = 10.0
     
     /// Message opacity
-    var messageOpacity: Float = 0.9
+    public var messageOpacity: Float = 0.9
     
     /// Deem Color
-    var deemColor: NSColor = NSColor.clear //todo. 다크모드 지원한다는거 예시로 보여주기
+    public var deemColor: NSColor = NSColor.clear //todo. 다크모드 지원한다는거 예시로 보여주기
     
     /// Vertical Margin
-    var verticalMargin: CGFloat = 10
+    public var verticalMargin: CGFloat = 10
     
     /// Horizontal Margin
-    var horizontalMargin: CGFloat = 10
+    public var horizontalMargin: CGFloat = 10
     
-    
-    public init(position: MessageBoxPosition, messageSpacing: CGFloat, isAllowMultipleMessages: Bool, isReleaseWhenClicked: Bool, duration: CGFloat, messageCornerRadius: CGFloat, messageOpacity: Float, deemColor: NSColor, verticalMargin: CGFloat, horizontalMargin: CGFloat) {
-        self.messageBoxPosition = position
+    public init(messageBoxPosition: MessageBoxPosition, messageSpacing: CGFloat, isAllowMultipleMessages: Bool, isReleaseWhenClicked: Bool, showingDuration: CGFloat, appearDuration: CGFloat, disappearDuration: CGFloat, messageCornerRadius: CGFloat, messageOpacity: Float, deemColor: NSColor, verticalMargin: CGFloat, horizontalMargin: CGFloat) {
+        self.messageBoxPosition = messageBoxPosition
         self.messagesSpacing = messageSpacing
         self.isAllowMultipleMessages = isAllowMultipleMessages
         self.isReleaseWhenClicked = isReleaseWhenClicked
-        self.duration = duration
+        self.showingDuration = showingDuration
+        self.appearDuration = appearDuration
+        self.disappearDuration = disappearDuration
         self.messageCornerRadius = messageCornerRadius
         self.messageOpacity = messageOpacity
         self.deemColor = deemColor
         self.verticalMargin = verticalMargin
         self.horizontalMargin = horizontalMargin
     }
-    
-    /// Set message box position
-    public mutating func setMessageBox(position: MessageBoxPosition) {
-        self.messageBoxPosition = position
-    }
-        //todo. 이거 다 셋하는거만들어주기
 }
 
 public enum MessageBoxPosition: String, CaseIterable {
@@ -79,7 +79,8 @@ public enum MessageBoxPosition: String, CaseIterable {
     case bottomTrailing
 }
 
-public let defaultConfig = VSwiftMessageBoxConfig(position: .bottomTrailing, messageSpacing: 10, isAllowMultipleMessages: true, isReleaseWhenClicked: true, duration: 2, messageCornerRadius: 10, messageOpacity: 0.9, deemColor: .clear, verticalMargin: 10, horizontalMargin: 10)
+
+public let defaultConfig = VSwiftMessageBoxConfig(messageBoxPosition: .bottomTrailing, messageSpacing: 10, isAllowMultipleMessages: true, isReleaseWhenClicked: true, showingDuration: 2, appearDuration: 0.5, disappearDuration: 0.5, messageCornerRadius: 10, messageOpacity: 0.9, deemColor: .clear, verticalMargin: 10, horizontalMargin: 10)
 private let messageContainerIdentifier: String = "VSwiftMessageContainer"
 private let messageStackViewIdentifier: String = "VSwiftMessageStackView"
 
@@ -112,11 +113,25 @@ public extension NSView {
         if config.isAllowMultipleMessages {
             print("allow multiple messages")
             messageStackView.addArrangedSubview(message)
+            message.alphaValue = 0
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = config.disappearDuration
+                // Use the value you want to animate to (NOT the starting value)
+//                self.basicButton.animator().alphaValue = 0
+                message.animator().alphaValue = 1
+              })
         } else {
             print("not allow multiple messages")
             print("stackview's subviews: \(messageStackView.subviews)")
             messageStackView.subviews.removeAll()
             messageStackView.addArrangedSubview(message)
+            message.alphaValue = 0
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = config.disappearDuration
+                // Use the value you want to animate to (NOT the starting value)
+//                self.basicButton.animator().alphaValue = 0
+                message.animator().alphaValue = 1
+              })
         }
         
         print("==> stackview's subviews: \(messageStackView.subviews)")
@@ -272,9 +287,9 @@ public extension NSView {
         }
         
         print("메시지 클릭드: ", targetView)
-//        targetView.removeFromSuperview()
-        removeMessage(message: targetView)
+        
         targetView.removeAllGestureRecognizers()
+        removeMessage(message: targetView)
     }
 
     /// Remove all gesture recognizers
@@ -283,22 +298,46 @@ public extension NSView {
     }
     
     /// Remove Message
-    fileprivate func removeMessage(message: NSView) { //todo. 컨피그에 disppear 지우는 딜레이 변수 넣기, 근데 objc func 에서 어떻게들고오지?
+    fileprivate func removeMessage(message: NSView) {
         print("리무브메시지")
-        disappearWithAnimation(message: message, duration: 0.5, completion: { [weak self] in
-            guard let self = self else { return }
-            print("없어져!")
+        let messageHeightConstraint: NSLayoutConstraint? = message.constraints.filter {
+            $0.firstAttribute == NSLayoutConstraint.Attribute.height
+        }.first
+        print("message height: \(messageHeightConstraint)")
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 2
+            context.allowsImplicitAnimation = true
+//            message.animator().alphaValue = 0
+            message.alphaValue = 0
+            
+            message.heightAnchor.constraint(equalToConstant: 0).isActive = true
+
+//            self.layoutSubtreeIfNeeded()
+            self.window?.layoutIfNeeded()
+        }, completionHandler: {
+            print("finish")
+//            message.animator().isHidden = true
+            message.isHidden = true
             message.removeFromSuperview()
-            
-            let messageCount: Int = self.getMessageCount()
-            print("남은메시지: \(messageCount)")
-            
-            
-            if messageCount == 0 {
-                print("날릴게")
-                self.releaseVSwiftMessageBox()
-            }
+//            스택뷰 스페이싱떄문에 애니메이션이상한거 수정
+//            message.alphaValue = 0
+//            self.window?.layoutIfNeeded()
+//            message.alphaValue = 03
         })
+//        disappearWithAnimation(message: message, duration: 0.5, completion: { [weak self] in
+//            guard let self = self else { return }
+//            print("없어져!")
+//            message.removeFromSuperview()
+//
+//            let messageCount: Int = self.getMessageCount()
+//            print("남은메시지: \(messageCount)")
+//
+//
+//            if messageCount == 0 {
+//                print("날릴게")
+//                self.releaseVSwiftMessageBox()
+//            }
+//        })
     }
     
     /// Get message box's message count
