@@ -304,41 +304,35 @@ public extension NSView {
             $0.firstAttribute == NSLayoutConstraint.Attribute.height
         }.first
         print("message height: \(messageHeightConstraint)")
+        message.subviews.forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        guard let messageStackView: NSStackView = message.superview as? NSStackView else {
+            return
+        }
+//        message.translatesAutoresizingMaskIntoConstraints = false
         NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 2
+            context.duration = 1
             context.allowsImplicitAnimation = true
-//            message.animator().alphaValue = 0
+            messageStackView.setCustomSpacing(0, after: message)
             message.alphaValue = 0
-            
             message.heightAnchor.constraint(equalToConstant: 0).isActive = true
-
-//            self.layoutSubtreeIfNeeded()
+            
             self.window?.layoutIfNeeded()
         }, completionHandler: {
             print("finish")
-//            message.animator().isHidden = true
-            message.isHidden = true
             message.removeFromSuperview()
-//            스택뷰 스페이싱떄문에 애니메이션이상한거 수정
-//            message.alphaValue = 0
-//            self.window?.layoutIfNeeded()
-//            message.alphaValue = 03
+            
+            let messageCount: Int = self.getMessageCount()
+            print("남은메시지: \(messageCount)")
+
+
+            if messageCount == 0 {
+                print("날릴게")
+                self.releaseVSwiftMessageBox()
+            }
         })
-//        disappearWithAnimation(message: message, duration: 0.5, completion: { [weak self] in
-//            guard let self = self else { return }
-//            print("없어져!")
-//            message.removeFromSuperview()
-//
-//            let messageCount: Int = self.getMessageCount()
-//            print("남은메시지: \(messageCount)")
-//
-//
-//            if messageCount == 0 {
-//                print("날릴게")
-//                self.releaseVSwiftMessageBox()
-//            }
-//        })
     }
+    
+    
     
     /// Get message box's message count
     func getMessageCount() -> Int {
