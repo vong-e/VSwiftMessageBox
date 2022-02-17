@@ -34,7 +34,7 @@ public struct VSwiftMessageBoxConfig {
     public var appearDuration: CGFloat = 0.5
     
     /// Message disappear animation duration
-    public var disappearDuration: CGFloat = 0.5
+    public var disappearDuration: CGFloat = 0.5 //todo. 이거쓰이나??
     
     /// Message corner radius
     public var messageCornerRadius: CGFloat = 10.0
@@ -83,7 +83,40 @@ public enum MessageBoxPosition: String, CaseIterable {
 public let defaultConfig = VSwiftMessageBoxConfig(messageBoxPosition: .bottomTrailing, messageSpacing: 10, isAllowMultipleMessages: true, isReleaseWhenClicked: true, showingDuration: 2, appearDuration: 0.5, disappearDuration: 0.5, messageCornerRadius: 10, messageOpacity: 0.9, deemColor: .clear, verticalMargin: 10, horizontalMargin: 10)
 private let messageContainerIdentifier: String = "VSwiftMessageContainer"
 private let messageStackViewIdentifier: String = "VSwiftMessageStackView"
-
+/*
+fileprivate class VConfiguredMessage: NSView {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+    }
+    var configuration: VSwiftMessageBoxConfig? = nil
+    var timer: Timer?
+    
+    func addMessageView(message: NSView, config: VSwiftMessageBoxConfig) {
+        self.configuration = config
+        self.addSubview(message)
+        self.wantsLayer = true
+        self.layer?.cornerRadius = config.messageCornerRadius
+        self.layer?.opacity = config.messageOpacity
+        setTimer()
+    }
+    
+    private func setTimer() {
+        guard let config = configuration else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: config.showingDuration, repeats: false, block: { [weak self] time in
+            guard let self = self else { return }
+            self.invalidateTimer()
+        })
+    }
+                       
+    public func invalidateTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+}
+*/
 public extension NSView {
     
     func addMessage(messageView: NSView, config: VSwiftMessageBoxConfig = defaultConfig) {
@@ -115,7 +148,7 @@ public extension NSView {
             messageStackView.addArrangedSubview(message)
             message.alphaValue = 0
             NSAnimationContext.runAnimationGroup({ (context) in
-                context.duration = config.disappearDuration
+                context.duration = config.appearDuration
                 // Use the value you want to animate to (NOT the starting value)
 //                self.basicButton.animator().alphaValue = 0
                 message.animator().alphaValue = 1
@@ -127,7 +160,7 @@ public extension NSView {
             messageStackView.addArrangedSubview(message)
             message.alphaValue = 0
             NSAnimationContext.runAnimationGroup({ (context) in
-                context.duration = config.disappearDuration
+                context.duration = config.appearDuration
                 // Use the value you want to animate to (NOT the starting value)
 //                self.basicButton.animator().alphaValue = 0
                 message.animator().alphaValue = 1
@@ -254,25 +287,33 @@ public extension NSView {
     }
     
     /// Make message view with configuration
-    fileprivate func getConfiguredMessage(message: NSView, config: VSwiftMessageBoxConfig) -> NSView {
-        message.wantsLayer = true
-        message.layer?.cornerRadius = config.messageCornerRadius
-        message.layer?.opacity = config.messageOpacity
+    fileprivate func getConfiguredMessage(message: NSView, config: VSwiftMessageBoxConfig) -> VConfiguredMessage {
+        let vMessage = VConfiguredMessage(frame: message.frame)
+        vMessage.addMessageView(message: message, config: config)
+//        메시지까지는 만들었는데, 지워줄떄 어떻게.. ?
+//        message.wantsLayer = true
+//        message.layer?.cornerRadius = config.messageCornerRadius
+//        message.layer?.opacity = config.messageOpacity
         
-        return message
+//        var timer: Timer?
+//        timer = Timer.scheduledTimer(withTimeInterval: config.showingDuration, repeats: false, block: { [weak self] time in
+//            guard let self = self else { return }
+//            timer?.invalidate()
+//            timer = nil
+//            self.removeMessage(message: message)
+//        })
+//        return message
+        return vMessage
+//todo.        메시지에 컨피그를 넣어서 클래스로 랩핑?
     }
     
     /// Scan all subviews and find view with accessibilityIdentifier
     fileprivate func findSubView(in view: NSView, accessibilityIdentifier: String) -> NSView? {
-        print("파인드섭뷰: \(view), 섭뷰: \(view.subviews)")
         for i in 0..<view.subviews.count {
-            print("\(view)의 \(i)번째 섭뷰: \(view.subviews[i])")
             if view.subviews[i].accessibilityIdentifier() == accessibilityIdentifier {
-                print("찾았다. : \(view.subviews[i])")
                 return view.subviews[i]
             }
             if let targetView = findSubView(in: view.subviews[i], accessibilityIdentifier: accessibilityIdentifier) {
-                print("찾았다2. : \(targetView)")
                 return targetView
             }
         }
@@ -281,8 +322,7 @@ public extension NSView {
     
     
     @objc func releaseWhenClickedGesture(_ recognizer: NSClickGestureRecognizer) {
-        guard let targetView = recognizer.target as? NSView else {
-            print("target not found")
+        guard let targetView = recognizer.target as? VConfiguredMessage else {
             return
         }
         
@@ -298,13 +338,15 @@ public extension NSView {
     }
     
     /// Remove Message
-    fileprivate func removeMessage(message: NSView) {
-        print("리무브메시지")
+    fileprivate func removeMessage(message: VConfiguredMessage) {
+        print("Remove message: \(message)")
+        
         let messageHeightConstraint: [NSLayoutConstraint] = message.constraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.height }
         
         guard let messageStackView: NSStackView = message.superview as? NSStackView else {
             return
         }
+        
         message.removeConstraints(messageHeightConstraint)
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 1
@@ -314,6 +356,7 @@ public extension NSView {
             message.heightAnchor.constraint(equalToConstant: 0).isActive = true
             self.window?.layoutIfNeeded()
         }, completionHandler: {
+            message.invalidateTimer()
             message.removeFromSuperview()
             
             let messageCount: Int = self.getMessageCount()
@@ -329,7 +372,6 @@ public extension NSView {
     /// Get message box's message count
     func getMessageCount() -> Int {
         guard let mainView = NSApplication.shared.keyWindow?.contentViewController?.view else {
-            print("메인윈도없음")
             return 0
         }
         
@@ -342,15 +384,13 @@ public extension NSView {
     /// Release VSwiftMessageBox
     func releaseVSwiftMessageBox() {
         guard let mainView = NSApplication.shared.keyWindow?.contentViewController?.view else {
-            print("메인윈도없음")
             return
         }
         
         guard let containerBox = findSubView(in: mainView, accessibilityIdentifier: messageContainerIdentifier) as? NSBox else {
-            print("메시지 박스 없ㄷ음")
             return
         }
-        print("컨테이너제거")
+        
         containerBox.removeFromSuperview()
     }
     
@@ -376,7 +416,6 @@ func disappearWithAnimation(message: NSView, duration: Double, delay: Double = 0
 
     CATransaction.begin()
     CATransaction.setCompletionBlock {
-        print("COMPLETE")
         completion()
     }
     let appearAnimataion = CABasicAnimation(keyPath: "opacity")
