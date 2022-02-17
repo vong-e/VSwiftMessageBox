@@ -300,33 +300,25 @@ public extension NSView {
     /// Remove Message
     fileprivate func removeMessage(message: NSView) {
         print("리무브메시지")
-        let messageHeightConstraint: NSLayoutConstraint? = message.constraints.filter {
-            $0.firstAttribute == NSLayoutConstraint.Attribute.height
-        }.first
-        print("message height: \(messageHeightConstraint)")
-        message.subviews.forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        let messageHeightConstraint: [NSLayoutConstraint] = message.constraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.height }
+        
         guard let messageStackView: NSStackView = message.superview as? NSStackView else {
             return
         }
-//        message.translatesAutoresizingMaskIntoConstraints = false
+        message.removeConstraints(messageHeightConstraint)
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 1
             context.allowsImplicitAnimation = true
-            messageStackView.setCustomSpacing(0, after: message)
             message.alphaValue = 0
+            messageStackView.setCustomSpacing(0, after: message)
             message.heightAnchor.constraint(equalToConstant: 0).isActive = true
-            
             self.window?.layoutIfNeeded()
         }, completionHandler: {
-            print("finish")
             message.removeFromSuperview()
             
             let messageCount: Int = self.getMessageCount()
-            print("남은메시지: \(messageCount)")
-
 
             if messageCount == 0 {
-                print("날릴게")
                 self.releaseVSwiftMessageBox()
             }
         })

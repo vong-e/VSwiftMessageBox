@@ -10,7 +10,7 @@ import Cocoa
 
 class MessageView: NSView {
     
-    private let conatinerBox: NSBox = {
+    private let containerBox: NSBox = {
         let box = NSBox()
         box.boxType = .custom
         box.cornerRadius = 10
@@ -70,8 +70,8 @@ class MessageView: NSView {
     private func settingUI() {
         self.wantsLayer = true
         self.layer?.backgroundColor = NSColor.black.cgColor
-        self.addSubview(conatinerBox)
-        constraintToSuperView(childView: conatinerBox)
+        self.addSubview(containerBox)
+        containerBox.frame = self.frame
         
         let stackView = NSStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,8 +82,8 @@ class MessageView: NSView {
         stackView.addArrangedSubview(messageTitleTextField)
         stackView.addArrangedSubview(messageSubTitleTextField)
 
-        conatinerBox.addSubview(messageImageView)
-        conatinerBox.addSubview(stackView)
+        containerBox.addSubview(messageImageView)
+        containerBox.addSubview(stackView)
         
         messageImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         messageImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -98,18 +98,6 @@ class MessageView: NSView {
             self.messageTitleTextField.stringValue = title
             self.messageSubTitleTextField.stringValue = subtitle
         }
-    }
-    
-    private func constraintToSuperView(childView: NSView) {
-        guard let superview = childView.superview else {
-            return
-        }
-
-        childView.translatesAutoresizingMaskIntoConstraints = false
-        childView.topAnchor.constraint(equalTo: superview.topAnchor, constant: 0).isActive = true
-        childView.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: 0).isActive = true
-        childView.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0).isActive = true
-        childView.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
     }
 }
 
