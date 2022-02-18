@@ -28,7 +28,7 @@ public struct VSwiftMessageBoxConfig {
     public var isReleaseWhenClicked: Bool = true
     
     /// Message showing duration
-    public var showingDuration: CGFloat = 2.0
+    public var showingDuration: CGFloat = 3.0
     
     /// Message appear animation duration
     public var appearDuration: CGFloat = 0.5
@@ -290,7 +290,6 @@ public extension NSView {
     fileprivate func getConfiguredMessage(message: NSView, config: VSwiftMessageBoxConfig) -> VConfiguredMessage {
         let vMessage = VConfiguredMessage(frame: message.frame)
         vMessage.addMessageView(message: message, config: config)
-//        메시지까지는 만들었는데, 지워줄떄 어떻게.. ?
 //        message.wantsLayer = true
 //        message.layer?.cornerRadius = config.messageCornerRadius
 //        message.layer?.opacity = config.messageOpacity
@@ -347,24 +346,30 @@ public extension NSView {
             return
         }
         
-        message.removeConstraints(messageHeightConstraint)
-        NSAnimationContext.runAnimationGroup({ context in
-            context.duration = 1
-            context.allowsImplicitAnimation = true
-            message.alphaValue = 0
-            messageStackView.setCustomSpacing(0, after: message)
-            message.heightAnchor.constraint(equalToConstant: 0).isActive = true
-            self.window?.layoutIfNeeded()
-        }, completionHandler: {
-            message.invalidateTimer()
-            message.removeFromSuperview()
-            
-            let messageCount: Int = self.getMessageCount()
+        messageStackView.setCustomSpacing(0, after: message)
+        message.removeFromSuperview()
+        let messageCount: Int = self.getMessageCount()
 
-            if messageCount == 0 {
-                self.releaseVSwiftMessageBox()
-            }
-        })
+        if messageCount == 0 {
+            self.releaseVSwiftMessageBox()
+        }
+//        message.removeConstraints(messageHeightConstraint)
+//        NSAnimationContext.runAnimationGroup({ context in
+//            context.duration = 1
+//            context.allowsImplicitAnimation = true
+//            message.alphaValue = 0
+//            messageStackView.setCustomSpacing(0, after: message)
+//            message.heightAnchor.constraint(equalToConstant: 0).isActive = true
+//            self.window?.layoutIfNeeded()
+//        }, completionHandler: {
+//            message.removeFromSuperview()
+//            
+//            let messageCount: Int = self.getMessageCount()
+//
+//            if messageCount == 0 {
+//                self.releaseVSwiftMessageBox()
+//            }
+//        })
     }
     
     

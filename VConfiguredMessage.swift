@@ -33,7 +33,7 @@ class VConfiguredMessage: NSView {
         timer = Timer.scheduledTimer(withTimeInterval: config.showingDuration, repeats: false, block: { [weak self] time in
             guard let self = self else { return }
             print("타이머끝")
-            self.invalidateTimer()
+            self.removeFromSuperview()
         })
     }
                        
@@ -41,5 +41,23 @@ class VConfiguredMessage: NSView {
         print("타이머인발리데이트")
         timer?.invalidate()
         timer = nil
+    }
+    
+    override func removeFromSuperview() {
+        print("리무브 메시지")
+        invalidateTimer()
+        let heightConstraints: [NSLayoutConstraint] = self.constraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.height }
+        self.removeConstraints(heightConstraints)
+        
+        NSAnimationContext.runAnimationGroup({ [weak self] context in
+            guard let self = self else { return }
+            context.duration = configuration?.disappearDuration ?? 0.5
+            context.allowsImplicitAnimation = true
+            self.alphaValue = 0
+            self.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            self.window?.layoutIfNeeded()
+        }, completionHandler: {
+            super.removeFromSuperview()
+        })
     }
 }
