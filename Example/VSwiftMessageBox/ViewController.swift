@@ -19,6 +19,8 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var isReleaseWhenClickedCheckBox: NSButton!
     
+    @IBOutlet weak var isTimerExistCheckBox: NSButton!
+    
     private var messageBoxConfig: VSwiftMessageBoxConfig = VSwiftMessageBox.defaultConfig
     private var messagePosition: MessageBoxPosition = .bottomTrailing
     private var messageCount: Int = 0
@@ -28,6 +30,7 @@ class ViewController: NSViewController {
         initPositionPopUpButton()
         allowMultipleMessagesCheckBox.action = #selector(allowMultipleMeesages(sender:))
         isReleaseWhenClickedCheckBox.action = #selector(isReleaseWhenClicked(sender:))
+        isTimerExistCheckBox.action = #selector(isTimerExist(sender:))
     }
     
     func initPositionPopUpButton() {
@@ -79,5 +82,15 @@ class ViewController: NSViewController {
         self.messageCount = 0
         messageBoxConfig.isReleaseWhenClicked = (sender.state == .on)
     }
+    
+    @objc func isTimerExist(sender: NSButton) {
+        if sender.state == .on {
+            print("* Timer Exist")
+        } else {
+            print("* Timer not exist")
+        }
+        NSView().releaseVSwiftMessageBox()
+        self.messageCount = 0
+        messageBoxConfig.isTimerExist = (sender.state == .on)
+    }
 }
-

@@ -725,10 +725,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brb-7Y-jYp">
-                                            <rect key="frame" x="13" y="126" width="173" height="96"/>
+                                            <rect key="frame" x="13" y="114" width="173" height="120"/>
                                             <subviews>
                                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-RV-zuV">
-                                                    <rect key="frame" x="-3" y="72" width="78" height="25"/>
+                                                    <rect key="frame" x="-3" y="96" width="78" height="25"/>
                                                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="0JA-D9-SyH" id="waX-1W-SrR">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
@@ -742,7 +742,7 @@
                                                     </popUpButtonCell>
                                                 </popUpButton>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I6g-Gr-7pL">
-                                                    <rect key="frame" x="-7" y="41" width="116" height="32"/>
+                                                    <rect key="frame" x="-7" y="65" width="116" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Add Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BHo-qN-IRX">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -752,15 +752,22 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uSL-4o-6j9">
-                                                    <rect key="frame" x="0.0" y="23" width="175" height="18"/>
+                                                    <rect key="frame" x="0.0" y="47" width="175" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Allow multiple messages" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="p36-Gc-o0o">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s62-SV-a40">
-                                                    <rect key="frame" x="0.0" y="-1" width="166" height="18"/>
+                                                    <rect key="frame" x="0.0" y="23" width="166" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Is release when clicked" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="D52-Yp-cja">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gjg-ea-xzC">
+                                                    <rect key="frame" x="0.0" y="-1" width="107" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Is Timer Exist" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="ETj-4Y-Lng">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -771,8 +778,10 @@
                                                 <integer value="1000"/>
                                                 <integer value="1000"/>
                                                 <integer value="1000"/>
+                                                <integer value="1000"/>
                                             </visibilityPriorities>
                                             <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
                                                 <real value="3.4028234663852886e+38"/>
                                                 <real value="3.4028234663852886e+38"/>
                                                 <real value="3.4028234663852886e+38"/>
@@ -803,6 +812,7 @@
                     <connections>
                         <outlet property="allowMultipleMessagesCheckBox" destination="uSL-4o-6j9" id="s9c-BA-o7V"/>
                         <outlet property="isReleaseWhenClickedCheckBox" destination="s62-SV-a40" id="eYP-N6-ehi"/>
+                        <outlet property="isTimerExistCheckBox" destination="Gjg-ea-xzC" id="7nk-XS-LgU"/>
                         <outlet property="messageArea" destination="4z5-Kh-K8j" id="dvk-Gq-rdj"/>
                         <outlet property="positionPopUpButton" destination="8Jq-RV-zuV" id="avg-Rj-NTF"/>
                     </connections>
