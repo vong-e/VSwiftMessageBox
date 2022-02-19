@@ -50,7 +50,7 @@ class ViewController: NSViewController {
         print("* Add Message")
         let messageView = MessageView(frame: NSRect(x: 0, y: 0, width: 300, height: 70))
         messageView.changeMessage(title: "Message Arrived! 💌", subtitle: "Your Message Here - \(messageCount)")
-        messageBoxConfig.deemColor = .red
+//        messageBoxConfig.deemColor = NSColor(named: "bg_deem")!
         messageBoxConfig.messageBoxPosition = self.messagePosition
         
         messageArea.addMessage(messageView: messageView, config: messageBoxConfig)
