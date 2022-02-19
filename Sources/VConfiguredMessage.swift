@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class VConfiguredMessage: NSView {
+public class VConfiguredMessage: NSView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -19,8 +19,7 @@ class VConfiguredMessage: NSView {
     var configuration: VSwiftMessageBoxConfig = VSwiftMessageBox.defaultConfig
     var timer: Timer?
     
-    func addMessageView(message: NSView, config: VSwiftMessageBoxConfig) {
-        self.configuration = config
+    func addMessageView(message: NSView, config: VSwiftMessageBoxConfig) {self.configuration = config
         self.addSubview(message)
         self.wantsLayer = true
         self.layer?.cornerRadius = config.messageCornerRadius

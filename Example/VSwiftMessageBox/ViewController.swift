@@ -12,13 +12,9 @@ import VSwiftMessageBox
 
 class ViewController: NSViewController {
     @IBOutlet weak var positionPopUpButton: NSPopUpButton!
-    
     @IBOutlet weak var messageArea: NSBox! /// Message Area
-    
     @IBOutlet weak var allowMultipleMessagesCheckBox: NSButton!
-    
     @IBOutlet weak var isReleaseWhenClickedCheckBox: NSButton!
-    
     @IBOutlet weak var isTimerExistCheckBox: NSButton!
     
     private var messageBoxConfig: VSwiftMessageBoxConfig = VSwiftMessageBox.defaultConfig
@@ -52,8 +48,8 @@ class ViewController: NSViewController {
     
     @IBAction func addMessageButtonAction(_ sender: NSButton) {
         print("* Add Message")
-        let messageView = MessageView(frame: NSRect(x: 0, y: 0, width: 300, height: 60))
-        messageView.changeMessage(title: "Message Arrived! 💌", subtitle: "Your Message Here. \(messageCount)")
+        let messageView = MessageView(frame: NSRect(x: 0, y: 0, width: 300, height: 70))
+        messageView.changeMessage(title: "Message Arrived! 💌", subtitle: "Your Message Here - \(messageCount)")
         messageBoxConfig.deemColor = .red
         messageBoxConfig.messageBoxPosition = self.messagePosition
         

@@ -36,7 +36,7 @@ public struct VSwiftMessageBoxConfig {
     public var showingDuration: Double = 3.0
     
     /// Message appear animation duration
-    public var appearDuration: Double = 1//todo. 이거쓰이나??
+    public var appearDuration: Double = 0.5
     
     /// Message disappear animation duration
     public var disappearDuration: Double = 1
@@ -48,7 +48,7 @@ public struct VSwiftMessageBoxConfig {
     public var messageOpacity: Float = 0.9
     
     /// Deem Color
-    public var deemColor: NSColor = NSColor.clear //todo. 다크모드 지원한다는거 예시로 보여주기
+    public var deemColor: NSColor = NSColor.clear
     
     /// Vertical Margin
     public var verticalMargin: CGFloat = 10
@@ -85,58 +85,45 @@ public enum MessageBoxPosition: String, CaseIterable {
 }
 
 /// Default VSwiftMessageBogConfig value
-public let defaultConfig = VSwiftMessageBoxConfig(messageBoxPosition: .bottomTrailing, messageSpacing: 10, isAllowMultipleMessages: true, isReleaseWhenClicked: true, isTimerExist: true, showingDuration: 3, appearDuration: 1, disappearDuration: 1, messageCornerRadius: 10, messageOpacity: 0.9, deemColor: .clear, verticalMargin: 10, horizontalMargin: 10)
+public let defaultConfig = VSwiftMessageBoxConfig(messageBoxPosition: .bottomTrailing, messageSpacing: 10, isAllowMultipleMessages: true, isReleaseWhenClicked: true, isTimerExist: true, showingDuration: 3, appearDuration: 0.5, disappearDuration: 1, messageCornerRadius: 10, messageOpacity: 0.9, deemColor: .clear, verticalMargin: 10, horizontalMargin: 10)
 private let messageContainerIdentifier: String = "VSwiftMessageContainer"
 private let messageStackViewIdentifier: String = "VSwiftMessageStackView"
 
 public extension NSView {
     func addMessage(messageView: NSView, config: VSwiftMessageBoxConfig = defaultConfig) {
+        /// 1. Get Configured Message
         let message = getConfiguredMessage(message: messageView, config: config)
+        message.setFrameSize(NSSize(width: messageView.frame.width, height: 10))
         message.widthAnchor.constraint(equalToConstant: messageView.frame.width).isActive = true
-        message.heightAnchor.constraint(equalToConstant: messageView.frame.height).isActive = true
         
-        /// 1. Get message container box
+        /// 2. Get message container box
         let containerBox = getMessageContainerBox(config: config)
         
-        /// 2. Get message stackview
+        /// 3. Get message stackView
         let messageStackView = getMessageStackView(messageBox: containerBox, config: config)
         
-        /// 3. Setting messagebox position (constraint, alignment)
+        /// 4. Setting messagebox position (constraint, alignment)
         setMessageBoxPosition(container: containerBox, messageStackView: messageStackView, config: config)
       
-        if config.isAllowMultipleMessages {
-            print("allow multiple messages")
-            messageStackView.addArrangedSubview(message)
-            message.alphaValue = 0
-            NSAnimationContext.runAnimationGroup({ (context) in
-                context.duration = config.appearDuration
-                // Use the value you want to animate to (NOT the starting value)
-//                self.basicButton.animator().alphaValue = 0
-                message.animator().alphaValue = 1
-              })
-        } else {
-            print("not allow multiple messages")
-            print("stackview's subviews: \(messageStackView.subviews)")
-            messageStackView.subviews.removeAll()
-            messageStackView.addArrangedSubview(message)
-            message.alphaValue = 0
-            NSAnimationContext.runAnimationGroup({ (context) in
-                context.duration = config.appearDuration
-                // Use the value you want to animate to (NOT the starting value)
-//                self.basicButton.animator().alphaValue = 0
-                message.animator().alphaValue = 1
-              })
-        }
-        
-        print("==> stackview's subviews: \(messageStackView.subviews)")
-        
-        /// Add click getsure
+        /// 5.Add message click getsure
         let clickGesture = NSClickGestureRecognizer(target: message, action: #selector(NSView.releaseWhenClickedGesture(_:)))
         message.addGestureRecognizer(clickGesture)
+        
+        /// 6. Show message
+        showMessage(originMessage: messageView, configuredMessage: message, messageStackView: messageStackView, config: config)
     }
     
     /*
-     1. Get message container box
+     1. Get Configured Message
+     */
+    fileprivate func getConfiguredMessage(message: NSView, config: VSwiftMessageBoxConfig) -> VConfiguredMessage {
+        let vMessage = VConfiguredMessage(frame: message.frame)
+        vMessage.addMessageView(message: message, config: config)
+        return vMessage
+    }
+    
+    /*
+     2. Get message container box
      */
     fileprivate func getMessageContainerBox(config: VSwiftMessageBoxConfig) -> NSBox {
         guard let containerBox = findSubView(in: self, accessibilityIdentifier: messageContainerIdentifier) as? NSBox else {
@@ -156,7 +143,7 @@ public extension NSView {
     }
     
     /*
-     2. Get message stackview
+     3. Get message stackview
      */
     fileprivate func getMessageStackView(messageBox: NSView, config: VSwiftMessageBoxConfig) -> NSStackView {
         guard let messageStackView = findSubView(in: self, accessibilityIdentifier: messageStackViewIdentifier) as? NSStackView else {
@@ -175,7 +162,7 @@ public extension NSView {
     }
     
     /*
-     3. Setting messagebox position (constraint, alignment)
+     4. Setting messagebox position (constraint, alignment)
      */
     fileprivate func setMessageBoxPosition(container: NSBox, messageStackView: NSStackView, config: VSwiftMessageBoxConfig) {
         messageStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -227,12 +214,6 @@ public extension NSView {
         }
     }
     
-    /// Make message view with configuration
-    fileprivate func getConfiguredMessage(message: NSView, config: VSwiftMessageBoxConfig) -> VConfiguredMessage {
-        let vMessage = VConfiguredMessage(frame: message.frame)
-        vMessage.addMessageView(message: message, config: config)
-        return vMessage
-    }
     
     /// Scan all subviews and find view with accessibilityIdentifier
     fileprivate func findSubView(in view: NSView, accessibilityIdentifier: String) -> NSView? {
@@ -247,7 +228,9 @@ public extension NSView {
         return nil
     }
     
-    
+    /*
+     5. Add message click gesture
+     */
     @objc func releaseWhenClickedGesture(_ recognizer: NSClickGestureRecognizer) {
         guard let targetView = recognizer.target as? VConfiguredMessage else {
             return
@@ -258,26 +241,40 @@ public extension NSView {
             removeMessage(message: targetView)
         }
     }
+    
+    /*
+     6. Show message
+     */
+    fileprivate func showMessage(originMessage: NSView, configuredMessage: VConfiguredMessage, messageStackView: NSStackView, config: VSwiftMessageBoxConfig) {
+        if config.isAllowMultipleMessages {
+            configuredMessage.alphaValue = 0
+            messageStackView.addArrangedSubview(configuredMessage)
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = config.appearDuration
+                context.allowsImplicitAnimation = true
+                configuredMessage.alphaValue = 1
+                configuredMessage.heightAnchor.constraint(equalToConstant: originMessage.frame.height).isActive = true
+                self.layoutSubtreeIfNeeded()
+              })
+        } else {
+            messageStackView.subviews.removeAll()
+            messageStackView.addArrangedSubview(configuredMessage)
+            configuredMessage.alphaValue = 0
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = config.appearDuration
+                context.allowsImplicitAnimation = true
+                configuredMessage.alphaValue = 1
+                configuredMessage.heightAnchor.constraint(equalToConstant: originMessage.frame.height).isActive = true
+                self.layoutSubtreeIfNeeded()
+            })
+        }
+    }
 
     /// Remove all gesture recognizers
     fileprivate func removeAllGestureRecognizers() {
         self.gestureRecognizers.removeAll()
     }
-    
-    /// Remove Message
-    fileprivate func removeMessage(message: VConfiguredMessage) {
-        print("Remove message: \(message)")
-        
-        message.removeMessage {
-            print("메시지 리무브드")
-            let messageCount: Int = self.getMessageCount()
 
-            if messageCount == 0 {
-                self.releaseVSwiftMessageBox()
-            }
-        }
-    }
-    
     /// Get message box's message count
     func getMessageCount() -> Int {
         guard let mainView = NSApplication.shared.keyWindow?.contentViewController?.view else {
@@ -303,8 +300,19 @@ public extension NSView {
         containerBox.removeFromSuperview()
     }
     
+    /// Remove Message
+    func removeMessage(message: VConfiguredMessage) {
+        message.removeMessage {
+            let messageCount: Int = self.getMessageCount()
+
+            if messageCount == 0 {
+                self.releaseVSwiftMessageBox()
+            }
+        }
+    }
+    
     /// Constraint fit to superview if exist
-    fileprivate func constraintToSuperview() {
+    func constraintToSuperview() {
         guard let superview = self.superview else {
             return
         }
@@ -315,25 +323,4 @@ public extension NSView {
         self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0).isActive = true
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
     }
-}
-
-func disappearWithAnimation(message: NSView, duration: Double, delay: Double = 0, completion: @escaping () -> ()) {
-    message.wantsLayer = true
-    guard let layer = message.layer else {
-        return
-    }
-
-    CATransaction.begin()
-    CATransaction.setCompletionBlock {
-        completion()
-    }
-    let appearAnimataion = CABasicAnimation(keyPath: "opacity")
-    appearAnimataion.beginTime = CACurrentMediaTime() + delay
-    appearAnimataion.duration = duration
-    appearAnimataion.fromValue = 1
-    appearAnimataion.toValue = 0
-    appearAnimataion.fillMode = CAMediaTimingFillMode.both
-    layer.add(appearAnimataion, forKey: "nil")
-    message.alphaValue = 0
-    CATransaction.commit()
 }

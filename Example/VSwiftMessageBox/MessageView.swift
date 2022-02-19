@@ -8,6 +8,8 @@
 
 import Cocoa
 
+import VSwiftMessageBox
+
 class MessageView: NSView {
     
     private let containerBox: NSBox = {
@@ -76,12 +78,12 @@ class MessageView: NSView {
         let stackView = NSStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
-        stackView.spacing = 3
+        stackView.spacing = 5
         stackView.orientation = .horizontal
         stackView.alignment = .leading
         stackView.addArrangedSubview(messageTitleTextField)
         stackView.addArrangedSubview(messageSubTitleTextField)
-
+        
         containerBox.addSubview(messageImageView)
         containerBox.addSubview(stackView)
         
