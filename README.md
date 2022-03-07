@@ -92,7 +92,7 @@ let package = Package(
    
 ## Author
 
-vong-e, sinkim123321@gmail.com
+vong-e
 
 ## License
 
