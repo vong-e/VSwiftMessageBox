@@ -60,20 +60,22 @@ VSwiftMessageBox supports many options. Make your custom VSwiftMessageConfig.
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first.   
 
-## Requirements
+## Requirements   
+* Swift 5   
+* macOS 10.13   
 
-## Installation
-
+## Installation   
+ 
 ### [CocoaPods](https://cocoapods.org)   
 VSwiftMessageBox is available through cocoapods.
 To install it, simply add the following line to your Podfile:
-
+   
 ```ruby
 pod 'VSwiftMessageBox'
 ```
-
+   
 ### [Swift Package Manager](https://github.com/apple/swift-package-manager)   
 VSwiftMessageBox also supports SPM.
 ```ruby
@@ -87,7 +89,7 @@ let package = Package(
   ]
 )
 ```
-
+   
 ## Author
 
 vong-e, sinkim123321@gmail.com
