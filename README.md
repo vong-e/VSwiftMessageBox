@@ -66,11 +66,26 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-VSwiftMessageBox is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### [CocoaPods](https://cocoapods.org)   
+VSwiftMessageBox is available through cocoapods.
+To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'VSwiftMessageBox'
+```
+
+### [Swift Package Manager](https://github.com/apple/swift-package-manager)   
+VSwiftMessageBox also supports SPM.
+```ruby
+let package = Package(
+  name: "VSwiftMessageTestProject",
+  dependencies: [
+    .package(url: "https://github.com/vong-e/VSwiftMessageBox.git", .exact("1.0.3"))
+  ],
+  targets: [
+    .target(name: "VSwiftMessageTestProject", dependencies: ["VSwiftMessageBox"])
+  ]
+)
 ```
 
 ## Author
